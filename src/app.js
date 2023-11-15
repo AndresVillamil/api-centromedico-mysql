@@ -12,6 +12,8 @@ app.set("port", 4000);
 //Middleware
 app.use(morgan("dev"))
 app.use(express.json())
+app.set('view engine', 'pug');
+
 //Routes
 app.use('/api/v1/pacientes',citasRoutes);
 
