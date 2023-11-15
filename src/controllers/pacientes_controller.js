@@ -7,8 +7,10 @@ const getPacientes =async(req,res) => {
         if (connection){
             console.log("Conexion exitosa")
             const result=await connection.query("SELECT numero_cedula,nombre,apellido,fecha_nacimiento FROM pacientes")
-            console.log(result);
-            res.json(result);
+            //console.log(result);
+            //res.json(result);
+            res.render('index.ejs', {result: result} );
+            //console.log(result)
         }else{
             console.log("Error de conexion")
         } 
@@ -23,10 +25,11 @@ const getPacientes =async(req,res) => {
 const addPacientes = async (req,res) => {
     try {
         //console.log(req.body);
-        const {numero_cedula, nombre, apellido,fecha_nacimiento} = req.body; //Definir el body
+        const {numero_cedula, nombre, apellido, fecha_nacimiento} = req.body; //Definir el body
         /*console.log(numero_cedula);
-        console.log(nombre + " " + apellido);
-        console.log(fecha_nacimiento);*/
+         console.log(nombre + " " + apellido);
+         console.log(fecha_nacimiento);
+         */
        if (numero_cedula  === undefined || nombre  === undefined || apellido  === undefined || fecha_nacimiento === undefined) {
             res.status(400).json({message: 'Bad Reques, Por favor diligencie todos los campos'})
         }  
@@ -112,12 +115,15 @@ const deletePaciente =async(req,res) => {
     };    
 };
 
-
+const pacientesRec = async (req, res) => {
+    res.render('index.ejs', {var1: "Esto es una variable"} );
+};
 
 export const methods = {
     getPacientes,
     getPaciente,
     addPacientes,
     updatePaciente,
-    deletePaciente
+    deletePaciente,
+    pacientesRec
 }

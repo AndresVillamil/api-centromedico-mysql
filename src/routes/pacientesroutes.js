@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { methods as pacientesController} from "./../controllers/pacientes_controller";
+import { methods as pacientesController} from "../controllers/pacientes_controller";
 
 const router = Router();
 
+//router.get('/', pacientesController.pacientesRec);
 router.get('/', pacientesController.getPacientes);
 router.get('/:numero_cedula', pacientesController.getPaciente);
 router.post('/nuevo-paciente', pacientesController.addPacientes);

@@ -2,20 +2,21 @@ import express from 'express';
 import morgan from 'morgan';
 //Routes
 
-import citasRoutes from './routes/citasroutes';
+import pacientesRoutes from './routes/pacientesroutes';
 
 const app = express();
 
 //Setting
 app.set("port", 4000);
+app.set('view engine', 'ejs');
 
 //Middleware
 app.use(morgan("dev"))
 app.use(express.json())
-app.set('view engine', 'pug');
+
 
 //Routes
-app.use('/api/v1/pacientes',citasRoutes);
+app.use('/api/v1/pacientes',pacientesRoutes);
 
 
 export default app
